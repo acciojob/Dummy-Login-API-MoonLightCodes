@@ -25,9 +25,6 @@ const App = () => {
   const passwordRef = useRef(null);
   const [loginData, setLoginData] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
-  if (loginData) {
-    return <h5>{JSON.stringify(loginData)}</h5>;
-  }
   return (
     <>
       <form
@@ -38,6 +35,8 @@ const App = () => {
             if (!us) {
               setErrMsg(<p id="user-error">User not found</p>);
               console.log("User not found");
+            }else {
+              setErrMsg(<p id="user-error"></p>);
             }
             if (us.password === passwordRef.current.value) {
               setLoginData(us);
@@ -59,6 +58,8 @@ const App = () => {
           Submit
         </button>
       </form>
+      {loginData&&JSON.stringify(loginData)}
+      {errMsg}
     </>
   );
 };
